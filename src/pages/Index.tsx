@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Trophy, Twitter, Newspaper, Gamepad2 } from 'lucide-react';
@@ -84,15 +83,13 @@ const Index = () => {
               ) : (
                 <>
                   <TabsContent value="all" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.length > 0 && <NewsCard news={news[0]} featured={true} />}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                      {news.slice(0, 3).map(item => (
+                        <NewsCard key={item.id} news={item} />
+                      ))}
                       
                       {tweets.slice(0, 1).map(tweet => (
                         <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                      
-                      {news.slice(1, 3).map(item => (
-                        <NewsCard key={item.id} news={item} />
                       ))}
                       
                       {tweets.slice(1, 2).map(tweet => (
@@ -120,9 +117,8 @@ const Index = () => {
                   </TabsContent>
                   
                   <TabsContent value="news" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.length > 0 && <NewsCard news={news[0]} featured={true} />}
-                      {news.slice(1).map(item => (
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                      {news.map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
                     </div>
