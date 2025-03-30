@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Trophy, Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getMockNews, getMockTweets } from '@/data/mockData';
 import NewsCard, { NewsItem } from '@/components/NewsCard';
 import TweetCard, { Tweet } from '@/components/TweetCard';
@@ -47,7 +48,6 @@ const Index = () => {
                     loop: true,
                     duration: 5000,
                     watchDrag: true,
-                    autoplay: true,
                   }}
                   className="w-full">
                   <CarouselContent>
