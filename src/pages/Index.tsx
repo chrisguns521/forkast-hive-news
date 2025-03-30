@@ -1,12 +1,20 @@
 
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Trophy, Twitter, Newspaper, Gamepad2 } from 'lucide-react';
+import { Trophy, Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getMockNews, getMockTweets } from '@/data/mockData';
 import NewsCard, { NewsItem } from '@/components/NewsCard';
 import TweetCard, { Tweet } from '@/components/TweetCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -29,10 +37,10 @@ const Index = () => {
       <Navbar />
       
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* Hero Section with Carousel */}
         <section className="py-8 px-4 bg-gradient-to-br from-forkast-100 to-forkast-200">
           <div className="container">
-            <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8">
               <div className="flex items-center justify-center rounded-full bg-gradient-to-br from-forkast-300 to-forkast-500 w-16 h-16 mb-4">
                 <Trophy className="h-8 w-8 text-white" />
               </div>
@@ -43,6 +51,79 @@ const Index = () => {
                 Your hub for the latest esports news, tweets, and updates from the world's top esports personalities and organizations.
               </p>
             </div>
+            
+            {!isLoading && news.length >= 3 && (
+              <div className="max-w-5xl mx-auto">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                    duration: 5000,
+                    watchDrag: true,
+                    autoplay: true,
+                  }}
+                  className="w-full">
+                  <CarouselContent>
+                    {news.slice(0, 3).map((item) => (
+                      <CarouselItem key={item.id}>
+                        <div className="p-1">
+                          <div className="news-card overflow-hidden bg-white">
+                            <div className="flex flex-col md:flex-row">
+                              <div className="aspect-video md:w-1/2 overflow-hidden">
+                                <img 
+                                  src={item.imageUrl} 
+                                  alt={item.title} 
+                                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                                />
+                              </div>
+                              <div className="p-6 md:w-1/2 flex flex-col justify-between">
+                                <div>
+                                  <div className="flex justify-between items-start mb-3">
+                                    <span className="bg-forkast-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                      {item.category}
+                                    </span>
+                                    <span className="bg-black/10 text-xs px-2 py-1 rounded">
+                                      {item.source}
+                                    </span>
+                                  </div>
+                                  <h3 className="text-xl md:text-2xl font-bold mb-3">
+                                    <a 
+                                      href={item.url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="hover:text-primary transition-colors"
+                                    >
+                                      {item.title}
+                                    </a>
+                                  </h3>
+                                  <p className="text-muted-foreground line-clamp-3">
+                                    {item.excerpt}
+                                  </p>
+                                </div>
+                                <div className="mt-4">
+                                  <Button variant="outline" size="sm" asChild>
+                                    <a 
+                                      href={item.url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center"
+                                    >
+                                      Read More
+                                    </a>
+                                  </Button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2 md:left-4" />
+                  <CarouselNext className="right-2 md:right-4" />
+                </Carousel>
+              </div>
+            )}
           </div>
         </section>
         
@@ -81,7 +162,7 @@ const Index = () => {
                 <>
                   <TabsContent value="news" className="mt-0">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                      {news.map(item => (
+                      {news.slice(3).map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
                     </div>
