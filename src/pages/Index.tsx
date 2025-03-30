@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Trophy, Twitter, Newspaper, Gamepad2 } from 'lucide-react';
@@ -48,14 +49,10 @@ const Index = () => {
         {/* Main Content */}
         <section className="py-8 px-4">
           <div className="container">
-            <Tabs defaultValue="all" className="w-full">
+            <Tabs defaultValue="news" className="w-full">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Latest Updates</h2>
                 <TabsList>
-                  <TabsTrigger value="all" className="flex items-center">
-                    <Newspaper className="h-4 w-4 mr-2" />
-                    All
-                  </TabsTrigger>
                   <TabsTrigger value="news" className="flex items-center">
                     <Gamepad2 className="h-4 w-4 mr-2" />
                     News
@@ -82,21 +79,9 @@ const Index = () => {
                 </div>
               ) : (
                 <>
-                  <TabsContent value="all" className="mt-0">
+                  <TabsContent value="news" className="mt-0">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                      {news.slice(0, 3).map(item => (
-                        <NewsCard key={item.id} news={item} />
-                      ))}
-                      
-                      {tweets.slice(0, 1).map(tweet => (
-                        <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                      
-                      {tweets.slice(1, 2).map(tweet => (
-                        <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                      
-                      {news.slice(3, 5).map(item => (
+                      {news.map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
                     </div>
@@ -104,21 +89,6 @@ const Index = () => {
                     <h3 className="text-xl font-bold mt-12 mb-6">More News</h3>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                       {news.slice(5, 13).map(item => (
-                        <NewsCard key={item.id} news={item} />
-                      ))}
-                    </div>
-                    
-                    <h3 className="text-xl font-bold mt-12 mb-6">From the Community</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {tweets.slice(2, 8).map(tweet => (
-                        <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                    </div>
-                  </TabsContent>
-                  
-                  <TabsContent value="news" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                      {news.map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
                     </div>
