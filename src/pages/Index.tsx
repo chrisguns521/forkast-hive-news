@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Trophy, Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -40,18 +39,6 @@ const Index = () => {
         {/* Hero Section with Carousel */}
         <section className="py-8 px-4 bg-gradient-to-br from-forkast-100 to-forkast-200">
           <div className="container">
-            <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8">
-              <div className="flex items-center justify-center rounded-full bg-gradient-to-br from-forkast-300 to-forkast-500 w-16 h-16 mb-4">
-                <Trophy className="h-8 w-8 text-white" />
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Forkast <span className="text-forkast-600">Hive</span>
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Your hub for the latest esports news, tweets, and updates from the world's top esports personalities and organizations.
-              </p>
-            </div>
-            
             {!isLoading && news.length >= 3 && (
               <div className="max-w-5xl mx-auto">
                 <Carousel
