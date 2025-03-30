@@ -3,6 +3,7 @@ import React from 'react';
 import { ExternalLink, Calendar } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 export interface NewsItem {
   id: string;
@@ -35,11 +36,13 @@ const NewsCard: React.FC<NewsCardProps> = ({ news, className, featured = false }
         "aspect-video overflow-hidden relative",
         featured ? "md:h-full" : ""
       )}>
-        <img 
-          src={news.imageUrl} 
-          alt={news.title} 
-          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-        />
+        <Link to={`/article/${news.id}`}>
+          <img 
+            src={news.imageUrl} 
+            alt={news.title} 
+            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+          />
+        </Link>
         <div className="absolute top-2 left-2">
           <span className="bg-forkast-500 text-white text-xs font-medium px-2 py-1 rounded">
             {news.category}
@@ -56,15 +59,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ news, className, featured = false }
       
       <div className="p-4">
         <h3 className={cn("news-card-title", featured ? "text-xl md:text-2xl" : "")}>
-          <a 
-            href={news.url} 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <Link 
+            to={`/article/${news.id}`}
             className="hover:text-primary transition-colors flex items-start"
           >
             {news.title}
-            <ExternalLink className="h-3 w-3 ml-1 mt-1 inline-flex flex-shrink-0 opacity-60" />
-          </a>
+          </Link>
         </h3>
         
         {featured && <p className="text-muted-foreground mt-2 line-clamp-3">{news.excerpt}</p>}

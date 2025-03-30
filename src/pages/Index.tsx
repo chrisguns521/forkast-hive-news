@@ -7,6 +7,7 @@ import NewsCard, { NewsItem } from '@/components/NewsCard';
 import TweetCard, { Tweet } from '@/components/TweetCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 import { 
   Carousel,
   CarouselContent,
@@ -57,11 +58,13 @@ const Index = () => {
                           <div className="news-card overflow-hidden bg-white">
                             <div className="flex flex-col md:flex-row">
                               <div className="aspect-video md:w-1/2 overflow-hidden">
-                                <img 
-                                  src={item.imageUrl} 
-                                  alt={item.title} 
-                                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-                                />
+                                <Link to={`/article/${item.id}`}>
+                                  <img 
+                                    src={item.imageUrl} 
+                                    alt={item.title} 
+                                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                                  />
+                                </Link>
                               </div>
                               <div className="p-6 md:w-1/2 flex flex-col justify-between">
                                 <div>
@@ -74,14 +77,12 @@ const Index = () => {
                                     </span>
                                   </div>
                                   <h3 className="text-xl md:text-2xl font-bold mb-3">
-                                    <a 
-                                      href={item.url} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer"
+                                    <Link 
+                                      to={`/article/${item.id}`}
                                       className="hover:text-primary transition-colors"
                                     >
                                       {item.title}
-                                    </a>
+                                    </Link>
                                   </h3>
                                   <p className="text-muted-foreground line-clamp-3">
                                     {item.excerpt}
@@ -89,14 +90,9 @@ const Index = () => {
                                 </div>
                                 <div className="mt-4">
                                   <Button variant="outline" size="sm" asChild>
-                                    <a 
-                                      href={item.url} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center"
-                                    >
+                                    <Link to={`/article/${item.id}`} className="inline-flex items-center">
                                       Read More
-                                    </a>
+                                    </Link>
                                   </Button>
                                 </div>
                               </div>
