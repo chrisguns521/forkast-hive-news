@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home, Youtube, Twitch } from 'lucide-react';
+import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home, Youtube, Twitch, Sword, Crosshair, Target, AnchorIcon, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/useMobile';
 import { 
@@ -27,13 +27,13 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // List of games for dropdown with article IDs
+  // List of games for dropdown with article IDs and icons
   const games = [
-    { name: "League of Legends", href: "/article/news-1" },
-    { name: "Valorant", href: "/article/news-2" },
-    { name: "CS:GO", href: "/article/news-3" },
-    { name: "Dota 2", href: "/article/news-4" },
-    { name: "Mobile Legends", href: "/article/news-5" }
+    { name: "League of Legends", href: "/article/news-1", icon: <Sword className="h-4 w-4 mr-2" /> },
+    { name: "Valorant", href: "/article/news-2", icon: <Crosshair className="h-4 w-4 mr-2" /> },
+    { name: "CS:GO", href: "/article/news-3", icon: <Target className="h-4 w-4 mr-2" /> },
+    { name: "Dota 2", href: "/article/news-4", icon: <AnchorIcon className="h-4 w-4 mr-2" /> },
+    { name: "Mobile Legends", href: "/article/news-5", icon: <Smartphone className="h-4 w-4 mr-2" /> }
   ];
 
   // List of streamers/content categories - simplified to just Twitch and YouTube
@@ -78,8 +78,9 @@ const Navbar = () => {
                           <NavigationMenuLink asChild>
                             <Link 
                               to={game.href} 
-                              className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              className="flex items-center select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                             >
+                              {game.icon}
                               {game.name}
                             </Link>
                           </NavigationMenuLink>
@@ -165,7 +166,9 @@ const Navbar = () => {
                       <Link 
                         to={game.href}
                         onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center"
                       >
+                        {game.icon}
                         {game.name}
                       </Link>
                     </DropdownMenuItem>
