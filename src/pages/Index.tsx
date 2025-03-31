@@ -39,7 +39,7 @@ const Index = () => {
       
       <main className="flex-1">
         {/* Hero Section with Carousel */}
-        <section className="py-8 px-4 bg-gradient-to-br from-forkast-100 to-forkast-200">
+        <section className="py-8 px-4 bg-gradient-to-br from-forkast-300 to-forkast-400">
           <div className="container">
             {!isLoading && news.length >= 3 && (
               <div className="max-w-5xl mx-auto">

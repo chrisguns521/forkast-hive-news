@@ -64,6 +64,23 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="group flex items-center text-sm font-medium">
+                Games
+                <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48">
+              {POPULAR_GAMES.map((game) => (
+                <DropdownMenuItem key={game.slug} asChild>
+                  <Link to={`/games/${game.slug}`} className="flex items-center">
+                    {game.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="group flex items-center text-sm font-medium">
                 Streamer News
                 <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
               </Button>
@@ -86,23 +103,6 @@ const Navbar = () => {
           >
             Tournaments
           </a>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="group flex items-center text-sm font-medium">
-                Games
-                <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
-              {POPULAR_GAMES.map((game) => (
-                <DropdownMenuItem key={game.slug} asChild>
-                  <Link to={`/games/${game.slug}`} className="flex items-center">
-                    {game.name}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
         </nav>
 
         <div className="ml-auto flex items-center space-x-4">
