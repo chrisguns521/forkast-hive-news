@@ -84,9 +84,9 @@ const Article = () => {
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            {/* Left sidebar - predictions */}
+            {/* Left sidebar - tweets (swapped from right) */}
             <aside className="md:col-span-3 col-span-1">
-              <PredictionSidebar />
+              <TweetSidebar tweets={tweets} />
             </aside>
             
             {/* Main article content - centered in the middle */}
@@ -116,7 +116,8 @@ const Article = () => {
                 </div>
               </header>
 
-              <div className="max-w-xl mx-auto mb-8 overflow-hidden rounded-lg">
+              {/* Reduced size of the cover photo */}
+              <div className="mb-8 overflow-hidden rounded-lg">
                 <img 
                   src={article.imageUrl} 
                   alt={article.title} 
@@ -149,9 +150,9 @@ const Article = () => {
               </div>
             </article>
             
-            {/* Right sidebar - tweets */}
+            {/* Right sidebar - predictions (swapped from left) */}
             <aside className="md:col-span-3 col-span-1">
-              <TweetSidebar tweets={tweets} />
+              <PredictionSidebar />
             </aside>
           </div>
         </div>
