@@ -109,11 +109,11 @@ const Article = () => {
                 </div>
               </header>
 
-              <div className="aspect-video w-full mb-8 overflow-hidden rounded-lg">
+              <div className="max-w-2xl mx-auto mb-8 overflow-hidden rounded-lg">
                 <img 
                   src={article.imageUrl} 
                   alt={article.title} 
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-auto"
                 />
               </div>
 
