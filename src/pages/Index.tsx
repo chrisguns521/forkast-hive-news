@@ -130,8 +130,8 @@ const Index = () => {
               </div>
               
               {isLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[...Array(4)].map((_, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[...Array(6)].map((_, index) => (
                     <div key={index} className="news-card h-[200px] animate-pulse">
                       <div className="bg-gray-200 aspect-video w-full" />
                       <div className="p-3 space-y-2">
@@ -145,9 +145,9 @@ const Index = () => {
               ) : (
                 <>
                   <TabsContent value="news" className="mt-0">
-                    {/* First row of news: 2 items per row */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      {news.slice(3, 5).map(item => (
+                    {/* First row of news: 3 items per row */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      {news.slice(3, 6).map(item => (
                         <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
                       ))}
                     </div>
@@ -165,10 +165,10 @@ const Index = () => {
                       ))}
                     </div>
                     
-                    {/* Second row of news: 2 items per row */}
+                    {/* Second row of news: 3 items per row */}
                     <h3 className="text-xl font-bold mt-8 mb-6">More News</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {news.slice(5, 7).map(item => (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {news.slice(6, 9).map(item => (
                         <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
                       ))}
                     </div>
