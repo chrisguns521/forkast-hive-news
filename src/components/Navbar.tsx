@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, Search, Gamepad2, ChevronDown } from 'lucide-react';
+import { Menu, Search, ChevronDown } from 'lucide-react';
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -11,12 +12,12 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 
-const GAME_CATEGORIES = [
-  { name: 'League of Legends', slug: 'lol' },
-  { name: 'Valorant', slug: 'valorant' },
-  { name: 'CS:GO', slug: 'csgo' },
-  { name: 'Dota 2', slug: 'dota2' },
-  { name: 'Overwatch', slug: 'overwatch' }
+const STREAMER_CATEGORIES = [
+  { name: 'Twitch', slug: 'twitch' },
+  { name: 'YouTube', slug: 'youtube' },
+  { name: 'Facebook Gaming', slug: 'facebook' },
+  { name: 'Kick', slug: 'kick' },
+  { name: 'TikTok Live', slug: 'tiktok' }
 ];
 
 const Navbar = () => {
@@ -56,24 +57,28 @@ const Navbar = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="group flex items-center text-sm font-medium">
-                Games
+                Streamer News
                 <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-48">
-              {GAME_CATEGORIES.map((game) => (
-                <DropdownMenuItem key={game.slug} asChild>
-                  <Link to={`/game/${game.slug}`} className="flex items-center">
-                    <Gamepad2 className="mr-2 h-4 w-4" />
-                    {game.name}
+              {STREAMER_CATEGORIES.map((platform) => (
+                <DropdownMenuItem key={platform.slug} asChild>
+                  <Link to={`/streamer/${platform.slug}`} className="flex items-center">
+                    {platform.name}
                   </Link>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link to="/tournaments" className="text-sm font-medium transition-colors hover:text-primary">
+          <a 
+            href="https://www.communitygaming.io/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
             Tournaments
-          </Link>
+          </a>
           <Link to="/teams" className="text-sm font-medium transition-colors hover:text-primary">
             Teams
           </Link>
@@ -111,13 +116,15 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <Link 
-                to="/tournaments" 
+              <a 
+                href="https://www.communitygaming.io/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
                 className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Tournaments
-              </Link>
+              </a>
               <Link 
                 to="/teams" 
                 className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
@@ -127,17 +134,16 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="pt-2 border-t">
-              <p className="mb-2 text-sm font-medium">Games</p>
+              <p className="mb-2 text-sm font-medium">Streamer News</p>
               <div className="grid grid-cols-2 gap-2">
-                {GAME_CATEGORIES.map((game) => (
+                {STREAMER_CATEGORIES.map((platform) => (
                   <Link
-                    key={game.slug}
-                    to={`/game/${game.slug}`}
+                    key={platform.slug}
+                    to={`/streamer/${platform.slug}`}
                     className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Gamepad2 className="h-4 w-4" />
-                    <span>{game.name}</span>
+                    <span>{platform.name}</span>
                   </Link>
                 ))}
               </div>
