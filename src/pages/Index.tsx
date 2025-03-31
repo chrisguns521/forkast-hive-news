@@ -16,11 +16,41 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const Index = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Game category data with images
+  const gameCategories = [
+    {
+      name: "League of Legends",
+      slug: "league-of-legends",
+      imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    {
+      name: "Valorant",
+      slug: "valorant",
+      imageUrl: "https://images.unsplash.com/photo-1618853606877-fb2b844d35f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    {
+      name: "CS:GO",
+      slug: "cs-go",
+      imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    {
+      name: "Dota 2",
+      slug: "dota-2",
+      imageUrl: "https://images.unsplash.com/photo-1579846321882-45cf6140c2ee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    {
+      name: "Overwatch",
+      slug: "overwatch",
+      imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    }
+  ];
 
   useEffect(() => {
     // Simulate API loading
@@ -171,24 +201,30 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Categories Section */}
+        {/* Categories Section with Game Images */}
         <section className="py-8 px-4 bg-muted">
           <div className="container">
             <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {["League of Legends", "Valorant", "CS:GO", "Dota 2", "Overwatch"].map((category) => (
-                <a
-                  key={category}
-                  href={`/game/${category.toLowerCase().replace(/\s+/g, '-')}`}
+              {gameCategories.map((category) => (
+                <Link
+                  key={category.name}
+                  to={`/game/${category.slug}`}
                   className="group relative rounded-lg overflow-hidden bg-card shadow-md transition-all hover:shadow-lg hover:-translate-y-1"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-forkast-400/70 to-forkast-600/70 flex items-center justify-center p-4">
-                    <Gamepad2 className="h-10 w-10 text-white" />
+                  <div className="w-full">
+                    <AspectRatio ratio={16/9}>
+                      <img 
+                        src={category.imageUrl} 
+                        alt={category.name}
+                        className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3">
+                        <h3 className="font-medium text-white">{category.name}</h3>
+                      </div>
+                    </AspectRatio>
                   </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-medium">{category}</h3>
-                  </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
