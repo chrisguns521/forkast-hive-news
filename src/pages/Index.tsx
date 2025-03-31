@@ -130,8 +130,8 @@ const Index = () => {
               </div>
               
               {isLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {[...Array(6)].map((_, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[...Array(4)].map((_, index) => (
                     <div key={index} className="news-card h-[200px] animate-pulse">
                       <div className="bg-gray-200 aspect-video w-full" />
                       <div className="p-3 space-y-2">
@@ -145,16 +145,31 @@ const Index = () => {
               ) : (
                 <>
                   <TabsContent value="news" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.slice(3, 6).map(item => (
-                        <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
+                    {/* First row of news: 2 items per row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      {news.slice(3, 5).map(item => (
+                        <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
                       ))}
                     </div>
                     
-                    <h3 className="text-xl font-bold mt-12 mb-6">More News</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.slice(6, 9).map(item => (
-                        <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
+                    {/* Row of social posts */}
+                    <h3 className="text-xl font-bold mt-8 mb-6">
+                      <span className="flex items-center">
+                        <Twitter className="h-5 w-5 mr-2 text-[#1DA1F2]" />
+                        Latest Social Updates
+                      </span>
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      {tweets.slice(0, 3).map(tweet => (
+                        <TweetCard key={tweet.id} tweet={tweet} />
+                      ))}
+                    </div>
+                    
+                    {/* Second row of news: 2 items per row */}
+                    <h3 className="text-xl font-bold mt-8 mb-6">More News</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {news.slice(5, 7).map(item => (
+                        <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
                       ))}
                     </div>
                   </TabsContent>
