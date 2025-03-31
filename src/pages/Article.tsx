@@ -10,6 +10,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import TweetSidebar from '@/components/TweetSidebar';
+import PredictionSidebar from '@/components/PredictionSidebar';
 
 const Article = () => {
   const { id } = useParams<{ id: string }>();
@@ -83,8 +84,13 @@ const Article = () => {
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Left sidebar - predictions */}
+            <aside className="md:col-span-3 col-span-1">
+              <PredictionSidebar />
+            </aside>
+            
             {/* Main article content - centered in the middle */}
-            <article className="md:col-start-3 md:col-span-6 col-span-1">
+            <article className="md:col-span-6 col-span-1">
               <header className="mb-6">
                 <div className="flex gap-2 mb-3">
                   <span className="bg-[#01E67B] text-white text-xs font-medium px-2 py-1 rounded">
@@ -136,7 +142,7 @@ const Article = () => {
               </div>
             </article>
             
-            {/* Right sidebar - positioned at the far right */}
+            {/* Right sidebar - tweets */}
             <aside className="md:col-span-3 col-span-1">
               <TweetSidebar tweets={tweets} />
             </aside>
