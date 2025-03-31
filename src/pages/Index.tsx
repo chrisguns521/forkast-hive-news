@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import PredictionSidebar from '@/components/PredictionSidebar';
 
 const Index = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -114,76 +115,86 @@ const Index = () => {
         {/* Main Content */}
         <section className="py-8 px-4">
           <div className="container max-w-6xl mx-auto">
-            <Tabs defaultValue="news" className="w-full">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Latest Updates</h2>
-                <TabsList>
-                  <TabsTrigger value="news" className="flex items-center">
-                    <Gamepad2 className="h-4 w-4 mr-2" />
-                    News
-                  </TabsTrigger>
-                  <TabsTrigger value="social" className="flex items-center">
-                    <Twitter className="h-4 w-4 mr-2" />
-                    Social
-                  </TabsTrigger>
-                </TabsList>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+              {/* Left Content - News and Social */}
+              <div className="md:col-span-9 col-span-1">
+                <Tabs defaultValue="news" className="w-full">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold">Latest Updates</h2>
+                    <TabsList>
+                      <TabsTrigger value="news" className="flex items-center">
+                        <Gamepad2 className="h-4 w-4 mr-2" />
+                        News
+                      </TabsTrigger>
+                      <TabsTrigger value="social" className="flex items-center">
+                        <Twitter className="h-4 w-4 mr-2" />
+                        Social
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+                  
+                  {isLoading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {[...Array(4)].map((_, index) => (
+                        <div key={index} className="news-card h-[200px] animate-pulse">
+                          <div className="bg-gray-200 aspect-video w-full" />
+                          <div className="p-3 space-y-2">
+                            <div className="h-4 bg-gray-200 rounded w-3/4" />
+                            <div className="h-4 bg-gray-200 rounded w-1/2" />
+                            <div className="h-3 bg-gray-200 rounded w-1/4 mt-2" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <TabsContent value="news" className="mt-0">
+                        {/* First row of news: 2 items per row instead of 3 */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                          {news.slice(3, 5).map(item => (
+                            <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
+                          ))}
+                        </div>
+                        
+                        {/* Row of social posts */}
+                        <h3 className="text-xl font-bold mt-8 mb-6">
+                          <span className="flex items-center">
+                            <Twitter className="h-5 w-5 mr-2 text-[#1DA1F2]" />
+                            Latest Social Updates
+                          </span>
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                          {tweets.slice(0, 2).map(tweet => (
+                            <TweetCard key={tweet.id} tweet={tweet} />
+                          ))}
+                        </div>
+                        
+                        {/* Second row of news: 2 items per row instead of 3 */}
+                        <h3 className="text-xl font-bold mt-8 mb-6">More News</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {news.slice(5, 7).map(item => (
+                            <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
+                          ))}
+                        </div>
+                      </TabsContent>
+                      
+                      <TabsContent value="social" className="mt-0">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {tweets.slice(0, 6).map(tweet => (
+                            <TweetCard key={tweet.id} tweet={tweet} />
+                          ))}
+                        </div>
+                      </TabsContent>
+                    </>
+                  )}
+                </Tabs>
               </div>
               
-              {isLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {[...Array(6)].map((_, index) => (
-                    <div key={index} className="news-card h-[200px] animate-pulse">
-                      <div className="bg-gray-200 aspect-video w-full" />
-                      <div className="p-3 space-y-2">
-                        <div className="h-4 bg-gray-200 rounded w-3/4" />
-                        <div className="h-4 bg-gray-200 rounded w-1/2" />
-                        <div className="h-3 bg-gray-200 rounded w-1/4 mt-2" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <>
-                  <TabsContent value="news" className="mt-0">
-                    {/* First row of news: 3 items per row */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      {news.slice(3, 6).map(item => (
-                        <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
-                      ))}
-                    </div>
-                    
-                    {/* Row of social posts */}
-                    <h3 className="text-xl font-bold mt-8 mb-6">
-                      <span className="flex items-center">
-                        <Twitter className="h-5 w-5 mr-2 text-[#1DA1F2]" />
-                        Latest Social Updates
-                      </span>
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                      {tweets.slice(0, 3).map(tweet => (
-                        <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                    </div>
-                    
-                    {/* Second row of news: 3 items per row */}
-                    <h3 className="text-xl font-bold mt-8 mb-6">More News</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.slice(6, 9).map(item => (
-                        <NewsCard key={item.id} news={item} className="max-w-full mx-auto" />
-                      ))}
-                    </div>
-                  </TabsContent>
-                  
-                  <TabsContent value="social" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {tweets.slice(0, 6).map(tweet => (
-                        <TweetCard key={tweet.id} tweet={tweet} />
-                      ))}
-                    </div>
-                  </TabsContent>
-                </>
-              )}
-            </Tabs>
+              {/* Right sidebar - predictions */}
+              <aside className="md:col-span-3 col-span-1">
+                <PredictionSidebar className="sticky top-4" />
+              </aside>
+            </div>
           </div>
         </section>
         
