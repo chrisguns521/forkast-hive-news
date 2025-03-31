@@ -7,7 +7,7 @@ const mockPredictions: Prediction[] = [
   {
     id: '1',
     question: 'Will Tundra Esports Win ESL One Raleigh?',
-    imageUrl: 'https://images.unsplash.com/photo-1551406483-3f3c12c1a171?q=80&w=2000&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
     percentYes: 96,
     volume: '$18.7K',
     endsIn: 'Ends in 13 days',

@@ -109,7 +109,7 @@ const Article = () => {
                 </div>
               </header>
 
-              <div className="max-w-2xl mx-auto mb-8 overflow-hidden rounded-lg">
+              <div className="max-w-xl mx-auto mb-8 overflow-hidden rounded-lg">
                 <img 
                   src={article.imageUrl} 
                   alt={article.title} 
