@@ -57,8 +57,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ news, className, featured = false }
         )}
       </div>
       
-      <div className="p-4">
-        <h3 className={cn("news-card-title", featured ? "text-xl md:text-2xl" : "")}>
+      <div className="p-3">
+        <h3 className={cn("news-card-title text-sm", featured ? "text-lg md:text-xl" : "")}>
           <Link 
             to={`/article/${news.id}`}
             className="hover:text-primary transition-colors flex items-start"
@@ -67,9 +67,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ news, className, featured = false }
           </Link>
         </h3>
         
-        {featured && <p className="text-muted-foreground mt-2 line-clamp-3">{news.excerpt}</p>}
+        {featured && <p className="text-muted-foreground text-xs mt-2 line-clamp-2">{news.excerpt}</p>}
         
-        <div className="flex items-center text-xs text-muted-foreground mt-3">
+        <div className="flex items-center text-xs text-muted-foreground mt-2">
           <Calendar className="h-3 w-3 mr-1" />
           <time dateTime={news.publishedAt.toISOString()}>
             {formatDistanceToNow(news.publishedAt, { addSuffix: true })}

@@ -113,7 +113,7 @@ const Index = () => {
         
         {/* Main Content */}
         <section className="py-8 px-4">
-          <div className="container">
+          <div className="container max-w-6xl mx-auto">
             <Tabs defaultValue="news" className="w-full">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Latest Updates</h2>
@@ -132,12 +132,12 @@ const Index = () => {
               {isLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[...Array(6)].map((_, index) => (
-                    <div key={index} className="news-card h-[300px] animate-pulse">
+                    <div key={index} className="news-card h-[200px] animate-pulse">
                       <div className="bg-gray-200 aspect-video w-full" />
-                      <div className="p-4 space-y-3">
-                        <div className="h-6 bg-gray-200 rounded w-3/4" />
-                        <div className="h-6 bg-gray-200 rounded w-1/2" />
-                        <div className="h-4 bg-gray-200 rounded w-1/4 mt-2" />
+                      <div className="p-3 space-y-2">
+                        <div className="h-4 bg-gray-200 rounded w-3/4" />
+                        <div className="h-4 bg-gray-200 rounded w-1/2" />
+                        <div className="h-3 bg-gray-200 rounded w-1/4 mt-2" />
                       </div>
                     </div>
                   ))}
@@ -147,14 +147,14 @@ const Index = () => {
                   <TabsContent value="news" className="mt-0">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {news.slice(3).map(item => (
-                        <NewsCard key={item.id} news={item} />
+                        <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
                       ))}
                     </div>
                     
                     <h3 className="text-xl font-bold mt-12 mb-6">More News</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {news.slice(5, 13).map(item => (
-                        <NewsCard key={item.id} news={item} />
+                        <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
                       ))}
                     </div>
                   </TabsContent>
@@ -174,7 +174,7 @@ const Index = () => {
         
         {/* Categories Section */}
         <section className="py-8 px-4 bg-muted">
-          <div className="container">
+          <div className="container max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {["League of Legends", "Valorant", "CS:GO", "Dota 2", "Mobile Legends"].map((category) => (
