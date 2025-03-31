@@ -135,7 +135,7 @@ const teamLiquidPredictions: Prediction[] = [
   },
   {
     id: '3',
-    question: 'Will Team Liquid's Valorant roster reach top 3 in VCT 2025?',
+    question: 'Will Team Liquid\'s Valorant roster reach top 3 in VCT 2025?',
     imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop',
     percentYes: 65,
     volume: '$19.7K',
