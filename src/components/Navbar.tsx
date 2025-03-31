@@ -20,6 +20,13 @@ const STREAMER_CATEGORIES = [
   { name: 'TikTok Live', slug: 'tiktok' }
 ];
 
+const POPULAR_GAMES = [
+  { name: 'League of Legends', slug: 'league-of-legends' },
+  { name: 'Dota 2', slug: 'dota-2' },
+  { name: 'Counter-Strike', slug: 'counter-strike' },
+  { name: 'Valorant', slug: 'valorant' }
+];
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -79,9 +86,23 @@ const Navbar = () => {
           >
             Tournaments
           </a>
-          <Link to="/teams" className="text-sm font-medium transition-colors hover:text-primary">
-            Teams
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="group flex items-center text-sm font-medium">
+                Games
+                <ChevronDown className="ml-1 h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48">
+              {POPULAR_GAMES.map((game) => (
+                <DropdownMenuItem key={game.slug} asChild>
+                  <Link to={`/games/${game.slug}`} className="flex items-center">
+                    {game.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="ml-auto flex items-center space-x-4">
@@ -125,13 +146,6 @@ const Navbar = () => {
               >
                 Tournaments
               </a>
-              <Link 
-                to="/teams" 
-                className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Teams
-              </Link>
             </div>
             <div className="pt-2 border-t">
               <p className="mb-2 text-sm font-medium">Streamer News</p>
@@ -144,6 +158,21 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <span>{platform.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="pt-2 border-t">
+              <p className="mb-2 text-sm font-medium">Games</p>
+              <div className="grid grid-cols-2 gap-2">
+                {POPULAR_GAMES.map((game) => (
+                  <Link
+                    key={game.slug}
+                    to={`/games/${game.slug}`}
+                    className="flex items-center space-x-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span>{game.name}</span>
                   </Link>
                 ))}
               </div>
