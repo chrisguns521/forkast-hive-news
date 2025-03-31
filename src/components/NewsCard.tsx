@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExternalLink, Calendar } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
@@ -15,6 +14,7 @@ export interface NewsItem {
   category: string;
   publishedAt: Date;
   url: string;
+  author: string;
 }
 
 interface NewsCardProps {

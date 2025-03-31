@@ -100,7 +100,14 @@ const Article = () => {
                     {article.source}
                   </span>
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">{article.title}</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-2">{article.title}</h1>
+                
+                {/* Author byline */}
+                <div className="flex items-center text-sm text-muted-foreground mb-2">
+                  <User className="h-4 w-4 mr-1" />
+                  <span>By {article.author}</span>
+                </div>
+                
                 <div className="flex items-center text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4 mr-1" />
                   <time dateTime={article.publishedAt.toISOString()}>

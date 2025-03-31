@@ -37,6 +37,18 @@ const getRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// Mock authors
+const authors = [
+  "Alex Johnson",
+  "Sarah Chen",
+  "Marcus Wright",
+  "Elena Rodriguez",
+  "Jamal Thompson",
+  "Olivia Kim",
+  "David Miller",
+  "Priya Patel"
+];
+
 // Create mock news data
 export const getMockNews = (): NewsItem[] => {
   const now = new Date();
@@ -52,7 +64,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[0],
       category: "Valorant",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://dotesports.com"
+      url: "https://dotesports.com",
+      author: "Alex Johnson"
     },
     {
       id: "2",
@@ -63,7 +76,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[1],
       category: "CS:GO",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://hltv.org"
+      url: "https://hltv.org",
+      author: "Sarah Chen"
     },
     {
       id: "3",
@@ -74,7 +88,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[2],
       category: "League of Legends",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://invenglobal.com"
+      url: "https://invenglobal.com",
+      author: "Marcus Wright"
     },
     {
       id: "4",
@@ -85,7 +100,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[3],
       category: "Dota 2",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://esl.com"
+      url: "https://esl.com",
+      author: "Elena Rodriguez"
     },
     {
       id: "5",
@@ -96,7 +112,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[4],
       category: "Overwatch",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://dexerto.com"
+      url: "https://dexerto.com",
+      author: "Jamal Thompson"
     },
     {
       id: "6",
@@ -107,7 +124,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[5],
       category: "Valorant",
       publishedAt: randomDate(weekAgo, now),
-      url: "https://thegamer.com"
+      url: "https://thegamer.com",
+      author: "Olivia Kim"
     }
   ];
   
@@ -115,6 +133,7 @@ export const getMockNews = (): NewsItem[] => {
   for (let i = 7; i <= 15; i++) {
     const category = categories[Math.floor(Math.random() * categories.length)];
     const source = sources[Math.floor(Math.random() * sources.length)];
+    const author = authors[Math.floor(Math.random() * authors.length)];
     
     news.push({
       id: i.toString(),
@@ -125,7 +144,8 @@ export const getMockNews = (): NewsItem[] => {
       imageUrl: gameImages[Math.floor(Math.random() * gameImages.length)],
       category: category,
       publishedAt: randomDate(weekAgo, now),
-      url: `https://${source.toLowerCase().replace(' ', '')}.com`
+      url: `https://${source.toLowerCase().replace(' ', '')}.com`,
+      author: author
     });
   }
   
