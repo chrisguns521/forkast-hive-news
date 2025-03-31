@@ -1,11 +1,10 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { DollarSign, ArrowUp, ArrowDown, TrendingUp } from 'lucide-react';
+import { DollarSign, ArrowUp, ArrowDown, TrendingUp, Sword, Crosshair, Target } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 const BettingOdds = () => {
