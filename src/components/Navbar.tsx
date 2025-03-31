@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home } from 'lucide-react';
+import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home, Youtube, Twitch } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/useMobile';
 import { 
@@ -28,21 +27,19 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // List of games for dropdown
+  // List of games for dropdown with article IDs
   const games = [
-    { name: "League of Legends", href: "/game/lol" },
-    { name: "Valorant", href: "/game/valorant" },
-    { name: "CS:GO", href: "/game/csgo" },
-    { name: "Dota 2", href: "/game/dota2" },
-    { name: "Mobile Legends", href: "/game/mobile-legends" }
+    { name: "League of Legends", href: "/article/news-1" },
+    { name: "Valorant", href: "/article/news-2" },
+    { name: "CS:GO", href: "/article/news-3" },
+    { name: "Dota 2", href: "/article/news-4" },
+    { name: "Mobile Legends", href: "/article/news-5" }
   ];
 
-  // List of streamers/content categories
+  // List of streamers/content categories - simplified to just Twitch and YouTube
   const streamerCategories = [
-    { name: "Twitch Highlights", href: "/streamer/twitch" },
-    { name: "YouTube Content", href: "/streamer/youtube" },
-    { name: "Content Creator News", href: "/streamer/news" },
-    { name: "Streaming Updates", href: "/streamer/updates" }
+    { name: "Twitch", href: "/streamer/twitch", icon: <Twitch className="h-4 w-4 mr-2" /> },
+    { name: "YouTube", href: "/streamer/youtube", icon: <Youtube className="h-4 w-4 mr-2" /> }
   ];
 
   return (
@@ -94,7 +91,7 @@ const Navbar = () => {
               </NavigationMenuList>
             </NavigationMenu>
             
-            {/* Streamer News Dropdown */}
+            {/* Streamer News Dropdown - Updated with icons */}
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -109,8 +106,9 @@ const Navbar = () => {
                           <NavigationMenuLink asChild>
                             <Link 
                               to={category.href} 
-                              className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              className="flex items-center select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                             >
+                              {category.icon}
                               {category.name}
                             </Link>
                           </NavigationMenuLink>
@@ -175,7 +173,7 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
-              {/* Mobile Streamer News Dropdown */}
+              {/* Mobile Streamer News Dropdown - Updated with icons */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center px-4 py-2 text-sm hover:bg-muted w-full text-left">
@@ -190,7 +188,9 @@ const Navbar = () => {
                       <Link 
                         to={category.href}
                         onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center"
                       >
+                        {category.icon}
                         {category.name}
                       </Link>
                     </DropdownMenuItem>
