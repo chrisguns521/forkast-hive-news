@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -24,7 +23,8 @@ const POPULAR_GAMES = [
   { name: 'League of Legends', slug: 'league-of-legends' },
   { name: 'Dota 2', slug: 'dota-2' },
   { name: 'Counter-Strike', slug: 'counter-strike' },
-  { name: 'Valorant', slug: 'valorant' }
+  { name: 'Valorant', slug: 'valorant' },
+  { name: 'Mobile Legends', slug: 'mobile-legends' }
 ];
 
 const Navbar = () => {

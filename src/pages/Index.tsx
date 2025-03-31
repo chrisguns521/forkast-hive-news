@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -177,7 +176,7 @@ const Index = () => {
           <div className="container">
             <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {["League of Legends", "Valorant", "CS:GO", "Dota 2", "Overwatch"].map((category) => (
+              {["League of Legends", "Valorant", "CS:GO", "Dota 2", "Mobile Legends"].map((category) => (
                 <a
                   key={category}
                   href={`/game/${category.toLowerCase().replace(/\s+/g, '-')}`}
