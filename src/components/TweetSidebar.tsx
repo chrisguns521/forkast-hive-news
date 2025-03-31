@@ -11,7 +11,7 @@ const TweetSidebar: React.FC<TweetSidebarProps> = ({ tweets }) => {
   return (
     <div className="bg-gray-50 rounded-lg p-4">
       <h2 className="text-xl font-bold mb-4 flex items-center">
-        <span className="bg-forkast-500 w-2 h-6 mr-2 rounded inline-block"></span>
+        <span className="bg-[#01E67B] w-2 h-6 mr-2 rounded inline-block"></span>
         Latest Tweets
       </h2>
       
