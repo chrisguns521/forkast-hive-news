@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Twitter, Newspaper, Gamepad2, ArrowLeft, ArrowRight } from 'lucide-react';
@@ -144,14 +145,14 @@ const Index = () => {
               ) : (
                 <>
                   <TabsContent value="news" className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {news.slice(3).map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
                     </div>
                     
                     <h3 className="text-xl font-bold mt-12 mb-6">More News</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {news.slice(5, 13).map(item => (
                         <NewsCard key={item.id} news={item} />
                       ))}
