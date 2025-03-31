@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, Search, Gamepad2, Trophy, ChevronDown } from 'lucide-react';
+import { Menu, Search, Gamepad2, ChevronDown } from 'lucide-react';
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -39,14 +38,17 @@ const Navbar = () => {
         
         <div className="flex">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="flex items-center justify-center rounded-full bg-gradient-to-br from-forkast-300 to-forkast-500 w-8 h-8">
-              <Trophy className="h-4 w-4 text-white" />
-            </div>
+            <img 
+              src="/lovable-uploads/39a65fc8-c40b-4ed2-9292-c8af6831873b.png" 
+              alt="Forkast Hive Logo" 
+              className="h-8 w-8"
+            />
             <span className="font-bold text-xl hidden md:inline-block">Forkast</span>
             <span className="font-bold text-lg text-muted-foreground hidden md:inline-block">Hive</span>
           </Link>
         </div>
 
+        
         <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 mx-6">
           <Link to="/" className="text-sm font-medium transition-colors hover:text-primary">
             Home
@@ -89,6 +91,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      
       {mobileMenuOpen && (
         <div className="md:hidden border-t py-4 animate-fade-in">
           <div className="container space-y-4">

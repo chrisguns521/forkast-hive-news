@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Trophy, Twitter, Twitch, Youtube, Rss } from 'lucide-react';
+import { Twitter, Twitch, Youtube, Rss } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -10,9 +10,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="flex items-center justify-center rounded-full bg-gradient-to-br from-forkast-300 to-forkast-500 w-10 h-10">
-                <Trophy className="h-5 w-5 text-white" />
-              </div>
+              <img 
+                src="/lovable-uploads/39a65fc8-c40b-4ed2-9292-c8af6831873b.png" 
+                alt="Forkast Hive Logo" 
+                className="h-10 w-10"
+              />
               <div>
                 <div className="font-bold text-xl">Forkast</div>
                 <div className="font-bold text-lg text-muted-foreground">Hive</div>
