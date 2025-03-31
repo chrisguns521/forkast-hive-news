@@ -146,14 +146,14 @@ const Index = () => {
                 <>
                   <TabsContent value="news" className="mt-0">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.slice(3).map(item => (
+                      {news.slice(3, 6).map(item => (
                         <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
                       ))}
                     </div>
                     
                     <h3 className="text-xl font-bold mt-12 mb-6">More News</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {news.slice(5, 13).map(item => (
+                      {news.slice(6, 9).map(item => (
                         <NewsCard key={item.id} news={item} className="max-w-xs mx-auto" />
                       ))}
                     </div>
@@ -161,7 +161,7 @@ const Index = () => {
                   
                   <TabsContent value="social" className="mt-0">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {tweets.map(tweet => (
+                      {tweets.slice(0, 6).map(tweet => (
                         <TweetCard key={tweet.id} tweet={tweet} />
                       ))}
                     </div>
