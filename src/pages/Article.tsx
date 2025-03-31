@@ -82,11 +82,12 @@ const Article = () => {
             </Button>
           </Link>
 
-          <div className="flex flex-col md:flex-row gap-8">
-            <article className="max-w-2xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Main article content - centered in the middle */}
+            <article className="md:col-start-3 md:col-span-6 col-span-1">
               <header className="mb-6">
                 <div className="flex gap-2 mb-3">
-                  <span className="bg-forkast-500 text-white text-xs font-medium px-2 py-1 rounded">
+                  <span className="bg-[#01E67B] text-white text-xs font-medium px-2 py-1 rounded">
                     {article.category}
                   </span>
                   <span className="bg-black/10 text-xs px-2 py-1 rounded">
@@ -135,8 +136,8 @@ const Article = () => {
               </div>
             </article>
             
-            {/* Right sidebar */}
-            <aside className="w-full md:w-80 flex-shrink-0">
+            {/* Right sidebar - positioned at the far right */}
+            <aside className="md:col-span-3 col-span-1">
               <TweetSidebar tweets={tweets} />
             </aside>
           </div>
