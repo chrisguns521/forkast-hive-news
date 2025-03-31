@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Trophy, Users, BarChart3, LineChart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Trophy, Users, BarChart3, LineChart, Home } from 'lucide-react';
 import { 
   BarChart, 
   Bar, 
@@ -18,6 +19,7 @@ import {
 } from 'recharts';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   Select,
@@ -118,26 +120,35 @@ const EsportsStats = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1 container py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold">Esports Statistics</h1>
+        <div className="flex flex-col gap-4 mb-6">
+          <Button variant="outline" size="sm" className="w-fit" asChild>
+            <Link to="/" className="flex items-center gap-2">
+              <Home className="h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
           
-          <div className="flex items-center gap-2 mt-4 md:mt-0">
-            <span className="text-sm text-muted-foreground">Year:</span>
-            <Select
-              value={yearFilter}
-              onValueChange={setYearFilter}
-            >
-              <SelectTrigger className="w-[100px]">
-                <SelectValue placeholder="Year" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="2019">2019</SelectItem>
-                <SelectItem value="2020">2020</SelectItem>
-                <SelectItem value="2021">2021</SelectItem>
-                <SelectItem value="2022">2022</SelectItem>
-                <SelectItem value="2023">2023</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <h1 className="text-3xl font-bold">Esports Statistics</h1>
+            
+            <div className="flex items-center gap-2 mt-4 md:mt-0">
+              <span className="text-sm text-muted-foreground">Year:</span>
+              <Select
+                value={yearFilter}
+                onValueChange={setYearFilter}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Year" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2019">2019</SelectItem>
+                  <SelectItem value="2020">2020</SelectItem>
+                  <SelectItem value="2021">2021</SelectItem>
+                  <SelectItem value="2022">2022</SelectItem>
+                  <SelectItem value="2023">2023</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
         

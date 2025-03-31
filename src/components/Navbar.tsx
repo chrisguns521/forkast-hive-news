@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio } from 'lucide-react';
+import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/useMobile';
 import { 
@@ -47,93 +47,98 @@ const Navbar = () => {
 
   return (
     <header className="bg-background border-b">
-      <div className="container px-4 flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <img 
-            src="/lovable-uploads/c02f731f-c1e1-4d3b-b15a-c2003d536d95.png" 
-            alt="Forkast Hive Logo" 
-            className="h-8 w-8"
-          />
-          <span className="text-xl font-bold">Forkast Hive</span>
-        </Link>
+      <div className="container px-4 flex h-16 items-center">
+        {/* Logo and Nav items container */}
+        <div className="flex items-center space-x-6">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <img 
+              src="/lovable-uploads/c02f731f-c1e1-4d3b-b15a-c2003d536d95.png" 
+              alt="Forkast Hive Logo" 
+              className="h-8 w-8"
+            />
+            <span className="text-xl font-bold">Forkast Hive</span>
+          </Link>
 
-        {/* Mobile menu button */}
-        {isMobile && (
-          <Button variant="ghost" size="icon" onClick={toggleMenu} className="md:hidden">
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        )}
+          {/* Desktop navigation - moved next to logo */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="text-sm font-medium hover:text-primary">
+              Home
+            </Link>
+            
+            {/* Games Dropdown */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-9 px-4 text-sm font-medium">
+                    <Gamepad2 className="h-4 w-4 mr-2" />
+                    Games
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-1 p-2">
+                      {games.map((game) => (
+                        <li key={game.name}>
+                          <NavigationMenuLink asChild>
+                            <Link 
+                              to={game.href} 
+                              className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              {game.name}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            
+            {/* Streamer News Dropdown */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-9 px-4 text-sm font-medium">
+                    <Radio className="h-4 w-4 mr-2" />
+                    Streamer News
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[220px] gap-1 p-2">
+                      {streamerCategories.map((category) => (
+                        <li key={category.name}>
+                          <NavigationMenuLink asChild>
+                            <Link 
+                              to={category.href} 
+                              className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              {category.name}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            
+            <Link to="/tournament-stats" className="text-sm font-medium hover:text-primary">
+              Tournament Stats
+            </Link>
+            <Link to="/esports-stats" className="text-sm font-medium hover:text-primary">
+              Esports Stats
+            </Link>
+          </nav>
+        </div>
 
-        {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center space-x-6 ml-8">
-          <Link to="/" className="text-sm font-medium hover:text-primary">
-            Home
-          </Link>
-          
-          {/* Games Dropdown */}
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="h-9 px-4 text-sm font-medium">
-                  <Gamepad2 className="h-4 w-4 mr-2" />
-                  Games
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-1 p-2">
-                    {games.map((game) => (
-                      <li key={game.name}>
-                        <NavigationMenuLink asChild>
-                          <Link 
-                            to={game.href} 
-                            className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {game.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          {/* Streamer News Dropdown */}
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="h-9 px-4 text-sm font-medium">
-                  <Radio className="h-4 w-4 mr-2" />
-                  Streamer News
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[220px] gap-1 p-2">
-                    {streamerCategories.map((category) => (
-                      <li key={category.name}>
-                        <NavigationMenuLink asChild>
-                          <Link 
-                            to={category.href} 
-                            className="block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {category.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          <Link to="/tournament-stats" className="text-sm font-medium hover:text-primary">
-            Tournament Stats
-          </Link>
-          <Link to="/esports-stats" className="text-sm font-medium hover:text-primary">
-            Esports Stats
-          </Link>
-        </nav>
+        {/* Mobile menu button - pushed to the right */}
+        <div className="ml-auto">
+          {isMobile && (
+            <Button variant="ghost" size="icon" onClick={toggleMenu} className="md:hidden">
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          )}
+        </div>
 
         {/* Mobile navigation */}
         {isMobile && isMenuOpen && (

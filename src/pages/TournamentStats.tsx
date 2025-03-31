@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Filter, Users, Trophy, Eye } from 'lucide-react';
+import { Filter, Users, Trophy, Eye, Home } from 'lucide-react';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -95,7 +96,17 @@ const TournamentStats = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1 container py-8">
-        <h1 className="text-3xl font-bold mb-6">Tournament Statistics</h1>
+        <div className="flex flex-col md:flex-row items-start justify-between mb-6">
+          <div>
+            <Button variant="outline" size="sm" className="mb-4" asChild>
+              <Link to="/" className="flex items-center gap-2">
+                <Home className="h-4 w-4" />
+                Back to Home
+              </Link>
+            </Button>
+            <h1 className="text-3xl font-bold">Tournament Statistics</h1>
+          </div>
+        </div>
         
         {/* Stat Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -221,7 +232,6 @@ const TournamentStats = () => {
               <PaginationItem>
                 {currentPage === 1 ? (
                   <PaginationPrevious 
-                    onClick={() => {}} 
                     className="pointer-events-none opacity-50"
                   />
                 ) : (
@@ -245,7 +255,6 @@ const TournamentStats = () => {
               <PaginationItem>
                 {currentPage === totalPages ? (
                   <PaginationNext 
-                    onClick={() => {}} 
                     className="pointer-events-none opacity-50"
                   />
                 ) : (
