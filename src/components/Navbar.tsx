@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, BarChart2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import useMobile from '@/hooks/useMobile';
+import { useIsMobile } from '@/hooks/useMobile';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
