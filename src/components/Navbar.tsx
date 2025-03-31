@@ -14,9 +14,7 @@ import { Input } from '@/components/ui/input';
 const STREAMER_CATEGORIES = [
   { name: 'Twitch', slug: 'twitch' },
   { name: 'YouTube', slug: 'youtube' },
-  { name: 'Facebook Gaming', slug: 'facebook' },
-  { name: 'Kick', slug: 'kick' },
-  { name: 'TikTok Live', slug: 'tiktok' }
+  { name: 'Kick', slug: 'kick' }
 ];
 
 const POPULAR_GAMES = [
