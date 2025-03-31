@@ -175,7 +175,7 @@ const teamLiquidTweets: Tweet[] = [
       avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png',
       verified: true,
     },
-    content: 'GG @Cloud9! What an intense match. We'll be back stronger next time. #LCSFinals',
+    content: "GG @Cloud9! What an intense match. We'll be back stronger next time. #LCSFinals",
     publishedAt: new Date(2025, 9, 12),
     stats: {
       likes: 3800,

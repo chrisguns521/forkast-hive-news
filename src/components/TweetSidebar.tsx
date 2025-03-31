@@ -21,6 +21,7 @@ const TweetSidebar: React.FC<TweetSidebarProps> = ({ tweets }) => {
             key={tweet.id} 
             tweet={tweet} 
             className="shadow-sm border border-gray-100"
+            compact={true}
           />
         ))}
       </div>
