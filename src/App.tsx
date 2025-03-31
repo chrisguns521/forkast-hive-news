@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Article from "./pages/Article";
 import TournamentStats from "./pages/TournamentStats";
 import EsportsStats from "./pages/EsportsStats";
+import BettingOdds from "./pages/BettingOdds";
+import TeamLiquid from "./pages/TeamLiquid";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/article/:id" element={<Article />} />
           <Route path="/tournament-stats" element={<TournamentStats />} />
           <Route path="/esports-stats" element={<EsportsStats />} />
+          <Route path="/betting-odds" element={<BettingOdds />} />
+          <Route path="/team-liquid" element={<TeamLiquid />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

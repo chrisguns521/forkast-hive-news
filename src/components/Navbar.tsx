@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home, Youtube, Twitch, Sword, Crosshair, Target, AnchorIcon, Smartphone } from 'lucide-react';
+import { Menu, X, BarChart2, ChevronDown, Gamepad2, Radio, Home, Youtube, Twitch, Sword, Crosshair, Target, AnchorIcon, Smartphone, DollarSign, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/useMobile';
 import { 
@@ -40,6 +41,11 @@ const Navbar = () => {
   const streamerCategories = [
     { name: "Twitch", href: "/streamer/twitch", icon: <Twitch className="h-4 w-4 mr-2" /> },
     { name: "YouTube", href: "/streamer/youtube", icon: <Youtube className="h-4 w-4 mr-2" /> }
+  ];
+
+  // List of teams - for now just Team Liquid
+  const teams = [
+    { name: "Team Liquid", href: "/team-liquid", icon: <Users className="h-4 w-4 mr-2" /> }
   ];
 
   return (
@@ -121,11 +127,44 @@ const Navbar = () => {
               </NavigationMenuList>
             </NavigationMenu>
             
+            {/* Teams Dropdown - New */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-9 px-4 text-sm font-medium">
+                    <Users className="h-4 w-4 mr-2" />
+                    Teams
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-1 p-2">
+                      {teams.map((team) => (
+                        <li key={team.name}>
+                          <NavigationMenuLink asChild>
+                            <Link 
+                              to={team.href} 
+                              className="flex items-center select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              {team.icon}
+                              {team.name}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            
             <Link to="/tournament-stats" className="text-sm font-medium hover:text-primary">
               Tournament Stats
             </Link>
             <Link to="/esports-stats" className="text-sm font-medium hover:text-primary">
               Esports Stats
+            </Link>
+            <Link to="/betting-odds" className="text-sm font-medium hover:text-primary flex items-center">
+              <DollarSign className="h-4 w-4 mr-1" />
+              Betting Odds
             </Link>
           </nav>
         </div>
@@ -201,6 +240,31 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
+              {/* Mobile Teams Dropdown - New */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center px-4 py-2 text-sm hover:bg-muted w-full text-left">
+                    <Users className="h-4 w-4 mr-2" />
+                    Teams
+                    <ChevronDown className="h-4 w-4 ml-auto" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-full">
+                  {teams.map((team) => (
+                    <DropdownMenuItem key={team.name} asChild>
+                      <Link 
+                        to={team.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center"
+                      >
+                        {team.icon}
+                        {team.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
               <Link
                 to="/tournament-stats"
                 className="px-4 py-2 text-sm hover:bg-muted"
@@ -214,6 +278,14 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Esports Stats
+              </Link>
+              <Link
+                to="/betting-odds"
+                className="px-4 py-2 text-sm hover:bg-muted flex items-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <DollarSign className="h-4 w-4 mr-2" />
+                Betting Odds
               </Link>
             </nav>
           </div>
