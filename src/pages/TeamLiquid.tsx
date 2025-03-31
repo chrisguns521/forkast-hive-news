@@ -9,6 +9,8 @@ import { format } from 'date-fns';
 import TeamPlayer, { Player } from '@/components/TeamPlayer';
 import PredictionSidebar from '@/components/PredictionSidebar';
 import { Prediction } from '@/components/PredictionCard';
+import TweetCard, { Tweet } from '@/components/TweetCard';
+import TweetSidebar from '@/components/TweetSidebar';
 
 // Team Liquid logo
 const TEAM_LIQUID_LOGO = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png";
@@ -135,13 +137,87 @@ const teamLiquidPredictions: Prediction[] = [
   },
   {
     id: '3',
-    question: 'Will Team Liquid\'s Valorant roster reach top 3 in VCT 2025?',
+    question: "Will Team Liquid's Valorant roster reach top 3 in VCT 2025?",
     imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop',
     percentYes: 65,
     volume: '$19.7K',
     endsIn: 'Ends in 30d',
     comments: 42,
     favorited: false
+  }
+];
+
+// Mock tweets from Team Liquid's official account
+const teamLiquidTweets: Tweet[] = [
+  {
+    id: '1',
+    author: {
+      name: 'Team Liquid',
+      handle: 'TeamLiquid',
+      avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png',
+      verified: true,
+    },
+    content: 'Excited to announce our new League of Legends roster for the upcoming split! #LetsGoLiquid',
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    publishedAt: new Date(2025, 9, 10),
+    stats: {
+      likes: 5200,
+      retweets: 1800,
+      replies: 350,
+    },
+    url: 'https://twitter.com/TeamLiquid/status/1',
+  },
+  {
+    id: '2',
+    author: {
+      name: 'Team Liquid',
+      handle: 'TeamLiquid',
+      avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png',
+      verified: true,
+    },
+    content: 'GG @Cloud9! What an intense match. We'll be back stronger next time. #LCSFinals',
+    publishedAt: new Date(2025, 9, 12),
+    stats: {
+      likes: 3800,
+      retweets: 950,
+      replies: 280,
+    },
+    url: 'https://twitter.com/TeamLiquid/status/2',
+  },
+  {
+    id: '3',
+    author: {
+      name: 'Team Liquid',
+      handle: 'TeamLiquid',
+      avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png',
+      verified: true,
+    },
+    content: 'Our Valorant team is heading to VCT Champions! Follow their journey starting next week. #VCT #TLWIN',
+    imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop',
+    publishedAt: new Date(2025, 9, 14),
+    stats: {
+      likes: 4500,
+      retweets: 1200,
+      replies: 320,
+    },
+    url: 'https://twitter.com/TeamLiquid/status/3',
+  },
+  {
+    id: '4',
+    author: {
+      name: 'Team Liquid',
+      handle: 'TeamLiquid',
+      avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Team_Liquid_logo.svg/1200px-Team_Liquid_logo.svg.png',
+      verified: true,
+    },
+    content: 'Happy birthday to our CS:GO star @EliGE! 🎂 #TLWIN',
+    publishedAt: new Date(2025, 9, 16),
+    stats: {
+      likes: 6200,
+      retweets: 850,
+      replies: 420,
+    },
+    url: 'https://twitter.com/TeamLiquid/status/4',
   }
 ];
 
@@ -185,10 +261,11 @@ const TeamLiquid = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <Tabs defaultValue="schedule" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8">
+            <Tabs defaultValue="players" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 mb-8">
                 <TabsTrigger value="schedule">Match Schedule</TabsTrigger>
                 <TabsTrigger value="players">Players</TabsTrigger>
+                <TabsTrigger value="socials">Socials</TabsTrigger>
               </TabsList>
               
               <TabsContent value="schedule">
@@ -290,6 +367,21 @@ const TeamLiquid = () => {
                     </TabsContent>
                   </Tabs>
                 </div>
+              </TabsContent>
+              
+              <TabsContent value="socials">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Team Liquid Twitter</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-6">
+                      {teamLiquidTweets.map(tweet => (
+                        <TweetCard key={tweet.id} tweet={tweet} />
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
             </Tabs>
           </div>
