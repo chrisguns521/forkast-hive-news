@@ -219,11 +219,16 @@ const TournamentStats = () => {
           <Pagination>
             <PaginationContent>
               <PaginationItem>
-                <PaginationPrevious 
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
-                />
+                {currentPage === 1 ? (
+                  <PaginationPrevious 
+                    onClick={() => {}} 
+                    className="pointer-events-none opacity-50"
+                  />
+                ) : (
+                  <PaginationPrevious 
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  />
+                )}
               </PaginationItem>
               
               {[...Array(totalPages)].map((_, i) => (
@@ -238,11 +243,16 @@ const TournamentStats = () => {
               ))}
               
               <PaginationItem>
-                <PaginationNext 
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
-                />
+                {currentPage === totalPages ? (
+                  <PaginationNext 
+                    onClick={() => {}} 
+                    className="pointer-events-none opacity-50"
+                  />
+                ) : (
+                  <PaginationNext 
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  />
+                )}
               </PaginationItem>
             </PaginationContent>
           </Pagination>
